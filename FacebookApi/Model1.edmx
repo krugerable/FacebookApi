@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FacebookApiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountTbl">
+          <Key>
+            <PropertyRef Name="AccID" />
+          </Key>
+          <Property Name="AccID" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AccEmail" Type="nvarchar" MaxLength="500" />
+          <Property Name="AccName" Type="nvarchar" MaxLength="500" />
+          <Property Name="AccToken" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PagesTbl">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PageToken" Type="nvarchar" MaxLength="500" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="255" />
+          <Property Name="fans" Type="bigint" />
+          <Property Name="ParentAccountID" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="FacebookApiModelStoreContainer">
+          <EntitySet Name="AccountTbl" EntityType="Self.AccountTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagesTbl" EntityType="Self.PagesTbl" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FacebookApiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FacebookApiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountTbls" EntityType="FacebookApiModel.AccountTbl" />
+          <EntitySet Name="PagesTbls" EntityType="FacebookApiModel.PagesTbl" />
+        </EntityContainer>
+        <EntityType Name="AccountTbl">
+          <Key>
+            <PropertyRef Name="AccID" />
+          </Key>
+          <Property Name="AccID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AccEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AccName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AccToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PagesTbl">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PageToken" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PageName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="fans" Type="Int64" />
+          <Property Name="ParentAccountID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FacebookApiModelStoreContainer" CdmEntityContainer="FacebookApiEntities">
+          <EntitySetMapping Name="AccountTbls">
+            <EntityTypeMapping TypeName="FacebookApiModel.AccountTbl">
+              <MappingFragment StoreEntitySet="AccountTbl">
+                <ScalarProperty Name="AccToken" ColumnName="AccToken" />
+                <ScalarProperty Name="AccName" ColumnName="AccName" />
+                <ScalarProperty Name="AccEmail" ColumnName="AccEmail" />
+                <ScalarProperty Name="AccID" ColumnName="AccID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PagesTbls">
+            <EntityTypeMapping TypeName="FacebookApiModel.PagesTbl">
+              <MappingFragment StoreEntitySet="PagesTbl">
+                <ScalarProperty Name="ParentAccountID" ColumnName="ParentAccountID" />
+                <ScalarProperty Name="fans" ColumnName="fans" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageToken" ColumnName="PageToken" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
